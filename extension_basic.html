@@ -56,25 +56,24 @@ $(document).click(function(e){
 							
 							if(result.entry_list[entry][key1][sens][key2].hasOwnProperty('syn'))
 							{
-								outputsyn +=result.entry_list[entry][key1][sens][key2].syn;
+								outputsyn +=result.entry_list[entry][key1][sens][key2].syn+"&nbsp;&nbsp;";
 							}
-							
-							outputsyn +="<br>";
+														
 							if(result.entry_list[entry][key1][sens][key2].hasOwnProperty('mc'))
 							{
-								outputmea +=result.entry_list[entry][key1][sens][key2].mc
+								outputmea +=result.entry_list[entry][key1][sens][key2].mc+"&nbsp;&nbsp;   ||";
 							}
-							outputmea +="<br>";
+							
 							if(result.entry_list[entry][key1][sens][key2].hasOwnProperty('ant'))
 							{
-								outputant +=result.entry_list[entry][key1][sens][key2].ant;
+								outputant +=result.entry_list[entry][key1][sens][key2].ant+"&nbsp;&nbsp;";
 							}
-							outputant +="<br>";
+							
 						}
 					}
 				}
 			} 
-			document.getElementById("workingGround").innerHTML = outputsyn +outputmea + outputant; 
+			document.getElementById("workingGround").innerHTML = outputsyn+"<br>" +outputmea +"<br>" +outputant; 
 		}
 		function xmlToJson(xml) {
 
