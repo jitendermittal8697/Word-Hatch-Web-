@@ -27,13 +27,15 @@ $(document).click(function(e){
          }
          range.setStart(node, range.startOffset +1);
          do{
-           range.setEnd(node,range.endOffset + 1);
+           range.setEnd(node,range.endOffset+1);
 
         }while(range.toString().indexOf(' ') == -1 && range.toString().trim() != '');
         var str = range.toString().trim();
-        var src = "https://www.dictionaryapi.com/api/v1/references/thesaurus/xml/"+str+"?key=91859f8f-807f-47e1-b41d-593375234bd2"; // NOTE: replace test_only with your own KEY 
+		var abc = str.replace(/[^a-zA-Z ]/g, "");
+        var src = "https://www.dictionaryapi.com/api/v1/references/thesaurus/xml/"+abc+"?key=91859f8f-807f-47e1-b41d-593375234bd2"; // NOTE: replace test_only with your own KEY 
 		jQuery.get( src, function( response ) { 
 		var obj = xmlToJson(response);
+		console.log(obj);
 		process(obj);
 		
 } );
@@ -41,20 +43,22 @@ $(document).click(function(e){
 			
        });
 	   function process(result) { 
-		  outputsyn = "Synonyms : "; 
-		  outputant = "Antonyms : "; 
-		  outputmea = "Meaning : "; 
+		  outputsyn = "<b>Synonyms : </b>"; 
+		  outputant = "<b>Antonyms : </b>"; 
+		  outputmea = "<b>Meaning : </b>"; 
 			for(var entry in result.entry_list)
 			{
 				for(var key1 in result.entry_list[entry])
 				{
-					if(result.entry_list[entry][key1].hasOwnProperty('mc'))
+					if(result.entry_list[entry][key1].hasOwnProperty('syn'))
 					{
-						outputmea +=result.entry_list[entry][key1].mc+"&nbsp;&nbsp;   ||";
+								{
+							outputsyn +=result.entry_list[entry][key1].syn+"&nbsp;&nbsp;";
+						}
 					}
 					if(result.entry_list[entry][key1].hasOwnProperty('mc'))
 					{
-						outputmea +=result.entry_list[entry][key1].mc+"&nbsp;&nbsp;   ||";
+						outputmea +=result.entry_list[entry][key1].mc+"&nbsp;&nbsp;   ||<br>";
 					}
 					
 					if(result.entry_list[entry][key1].hasOwnProperty('ant'))
@@ -65,12 +69,14 @@ $(document).click(function(e){
 					{
 							if(result.entry_list[entry][key1][sens].hasOwnProperty('syn'))
 							{
-								outputsyn +=result.entry_list[entry][key1][sens].syn+"&nbsp;&nbsp;";
+								{
+									outputsyn +=result.entry_list[entry][key1][sens].syn+"&nbsp;&nbsp;";
+								}
 							}
 														
 							if(result.entry_list[entry][key1][sens].hasOwnProperty('mc'))
 							{
-								outputmea +=result.entry_list[entry][key1][sens].mc+"&nbsp;&nbsp;   ||";
+								outputmea +=result.entry_list[entry][key1][sens].mc+"&nbsp;&nbsp;   ||<br>";
 							}
 							
 							if(result.entry_list[entry][key1][sens].hasOwnProperty('ant'))
@@ -82,12 +88,13 @@ $(document).click(function(e){
 							
 							if(result.entry_list[entry][key1][sens][key2].hasOwnProperty('syn'))
 							{
+								{
 								outputsyn +=result.entry_list[entry][key1][sens][key2].syn+"&nbsp;&nbsp;";
-							}
-														
+								}
+							}							
 							if(result.entry_list[entry][key1][sens][key2].hasOwnProperty('mc'))
 							{
-								outputmea +=result.entry_list[entry][key1][sens][key2].mc+"&nbsp;&nbsp;   ||";
+								outputmea +=result.entry_list[entry][key1][sens][key2].mc+"&nbsp;&nbsp;   ||<br>";
 							}
 							
 							if(result.entry_list[entry][key1][sens][key2].hasOwnProperty('ant'))
