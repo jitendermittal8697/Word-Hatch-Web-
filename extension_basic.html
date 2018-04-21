@@ -19,18 +19,18 @@ colors. In this season nature shows its real beauty and everywhere looks very da
 <script>
 
 $(document).click(function(e){
-         var s = window.getSelection();
-         var range = s.getRangeAt(0);
-         var node = s.anchorNode;
-         while(range.toString().indexOf(' ') != 0) {                 
-            range.setStart(node,(range.startOffset -1));
-         }
-         range.setStart(node, range.startOffset +1);
-         do{
-           range.setEnd(node,range.endOffset+1);
+         s = window.getSelection();
+    var range = s.getRangeAt(0);
+    var node = s.anchorNode;
+    while (range.toString().indexOf(' ') != 0) {
+        range.setStart(node, (range.startOffset - 1));
+    }
+    range.setStart(node, range.startOffset + 1);
+    do {
+        range.setEnd(node, range.endOffset + 1);
 
-        }while(range.toString().indexOf(' ') == -1 && range.toString().trim() != '');
-        var str = range.toString().trim();
+    } while (range.toString().indexOf(' ') == -1 && range.toString().trim() != '' && range.endOffset < node.length);
+    var str = range.toString().trim();
 		var abc = str.replace(/[^a-zA-Z ]/g, "");
         var src = "https://www.dictionaryapi.com/api/v1/references/thesaurus/xml/"+abc+"?key=91859f8f-807f-47e1-b41d-593375234bd2"; // NOTE: replace test_only with your own KEY 
 		jQuery.get( src, function( response ) { 
@@ -50,60 +50,69 @@ $(document).click(function(e){
 			{
 				for(var key1 in result.entry_list[entry])
 				{
-					if(result.entry_list[entry][key1].hasOwnProperty('syn'))
+					if(typeof result.entry_list[entry][key1]=== "object")
 					{
-								{
-							outputsyn +=result.entry_list[entry][key1].syn+"&nbsp;&nbsp;";
-						}
-					}
-					if(result.entry_list[entry][key1].hasOwnProperty('mc'))
-					{
-						outputmea +=result.entry_list[entry][key1].mc+"&nbsp;&nbsp;   ||<br>";
-					}
-					
-					if(result.entry_list[entry][key1].hasOwnProperty('ant'))
-					{
-						outputant +=result.entry_list[entry][key1].ant+"&nbsp;&nbsp;";
-					}
-					for(var sens in result.entry_list[entry][key1])
-					{
-							if(result.entry_list[entry][key1][sens].hasOwnProperty('syn'))
-							{
-								{
-									outputsyn +=result.entry_list[entry][key1][sens].syn+"&nbsp;&nbsp;";
-								}
-							}
-														
-							if(result.entry_list[entry][key1][sens].hasOwnProperty('mc'))
-							{
-								outputmea +=result.entry_list[entry][key1][sens].mc+"&nbsp;&nbsp;   ||<br>";
-							}
+						if(result.entry_list[entry][key1].hasOwnProperty('syn')&&typeof result.entry_list[entry][key1]['syn']!=="object")
+						{	
 							
-							if(result.entry_list[entry][key1][sens].hasOwnProperty('ant'))
 							{
-								outputant +=result.entry_list[entry][key1][sens].ant+"&nbsp;&nbsp;";
+								outputsyn +=result.entry_list[entry][key1].syn+"&nbsp;&nbsp;";
 							}
-						for(var key2 in result.entry_list[entry][key1][sens])
+						}
+						if(result.entry_list[entry][key1].hasOwnProperty('mc'))
 						{
-							
-							if(result.entry_list[entry][key1][sens][key2].hasOwnProperty('syn'))
-							{
-								{
-								outputsyn +=result.entry_list[entry][key1][sens][key2].syn+"&nbsp;&nbsp;";
-								}
-							}							
-							if(result.entry_list[entry][key1][sens][key2].hasOwnProperty('mc'))
-							{
-								outputmea +=result.entry_list[entry][key1][sens][key2].mc+"&nbsp;&nbsp;   ||<br>";
-							}
-							
-							if(result.entry_list[entry][key1][sens][key2].hasOwnProperty('ant'))
-							{
-								outputant +=result.entry_list[entry][key1][sens][key2].ant+"&nbsp;&nbsp;";
-							}
-							
+							outputmea +=result.entry_list[entry][key1].mc+"&nbsp;&nbsp;   ||<br>";
+						}
+						
+						if(result.entry_list[entry][key1].hasOwnProperty('ant'))
+						{
+							outputant +=result.entry_list[entry][key1].ant+"&nbsp;&nbsp;";
 						}
 					}
+						for(var sens in result.entry_list[entry][key1])
+						{
+						if(typeof result.entry_list[entry][key1][sens]=== "object")
+						{
+								if(result.entry_list[entry][key1][sens].hasOwnProperty('syn')&&typeof result.entry_list[entry][key1][sens]['syn']!=="object")
+								{
+									{
+										outputsyn +=result.entry_list[entry][key1][sens].syn+"&nbsp;&nbsp;";
+									}
+								}
+															
+								if(result.entry_list[entry][key1][sens].hasOwnProperty('mc'))
+								{
+									outputmea +=result.entry_list[entry][key1][sens].mc+"&nbsp;&nbsp;   ||<br>";
+								}
+								
+								if(result.entry_list[entry][key1][sens].hasOwnProperty('ant'))
+								{
+									outputant +=result.entry_list[entry][key1][sens].ant+"&nbsp;&nbsp;";
+								}
+						}
+							for(var key2 in result.entry_list[entry][key1][sens])
+							{
+								if(typeof result.entry_list[entry][key1][sens][key2]=== "object")
+								{
+								if(result.entry_list[entry][key1][sens][key2].hasOwnProperty('syn')&&typeof result.entry_list[entry][key1][sens][key2]['syn']!=="object")
+								{
+									{
+									outputsyn +=result.entry_list[entry][key1][sens][key2].syn+"&nbsp;&nbsp;";
+									}
+								}							
+								if(result.entry_list[entry][key1][sens][key2].hasOwnProperty('mc'))
+								{
+									outputmea +=result.entry_list[entry][key1][sens][key2].mc+"&nbsp;&nbsp;   ||<br>";
+								}
+								
+								if(result.entry_list[entry][key1][sens][key2].hasOwnProperty('ant'))
+								{
+									outputant +=result.entry_list[entry][key1][sens][key2].ant+"&nbsp;&nbsp;";
+								}
+								}
+							}
+						}
+					
 				}
 			} 
 			document.getElementById("workingGround").innerHTML = outputsyn+"<br>" +outputmea +"<br>" +outputant; 
