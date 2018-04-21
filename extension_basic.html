@@ -42,13 +42,39 @@ $(document).click(function(e){
 			
        });
 	   function process(result) { 
-		  output = ""; 
-		  for (key in result.response) { 
-			list = result.response[key].list; 
-			output += list.synonyms+"<br>"; 
-		  } 
-		  if (output) 
-			document.getElementById("workingGround").innerHTML = output; 
+		  outputsyn = "Synonyms : "; 
+		  outputant = "Antonyms : "; 
+		  outputmea = "Meaning : "; 
+			for(var entry in result.entry_list)
+			{
+				for(var key1 in result.entry_list[entry])
+				{
+					for(var sens in result.entry_list[entry][key1])
+					{
+						for(var key2 in result.entry_list[entry][key1][sens])
+						{
+							
+							if(result.entry_list[entry][key1][sens][key2].hasOwnProperty('syn'))
+							{
+								outputsyn +=result.entry_list[entry][key1][sens][key2].syn;
+							}
+							
+							outputsyn +="<br>";
+							if(result.entry_list[entry][key1][sens][key2].hasOwnProperty('mc'))
+							{
+								outputmea +=result.entry_list[entry][key1][sens][key2].mc
+							}
+							outputmea +="<br>";
+							if(result.entry_list[entry][key1][sens][key2].hasOwnProperty('ant'))
+							{
+								outputant +=result.entry_list[entry][key1][sens][key2].ant;
+							}
+							outputant +="<br>";
+						}
+					}
+				}
+			} 
+			document.getElementById("workingGround").innerHTML = outputsyn +outputmea + outputant; 
 		}
 		function xmlToJson(xml) {
 
