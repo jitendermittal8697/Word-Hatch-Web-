@@ -34,7 +34,6 @@ $(document).click(function(e){
         var src = "https://www.dictionaryapi.com/api/v1/references/thesaurus/xml/"+str+"?key=91859f8f-807f-47e1-b41d-593375234bd2"; // NOTE: replace test_only with your own KEY 
 		jQuery.get( src, function( response ) { 
 		var obj = xmlToJson(response);
-		console.log(obj);
 		process(obj);
 		
 } );
@@ -49,8 +48,35 @@ $(document).click(function(e){
 			{
 				for(var key1 in result.entry_list[entry])
 				{
+					if(result.entry_list[entry][key1].hasOwnProperty('mc'))
+					{
+						outputmea +=result.entry_list[entry][key1].mc+"&nbsp;&nbsp;   ||";
+					}
+					if(result.entry_list[entry][key1].hasOwnProperty('mc'))
+					{
+						outputmea +=result.entry_list[entry][key1].mc+"&nbsp;&nbsp;   ||";
+					}
+					
+					if(result.entry_list[entry][key1].hasOwnProperty('ant'))
+					{
+						outputant +=result.entry_list[entry][key1].ant+"&nbsp;&nbsp;";
+					}
 					for(var sens in result.entry_list[entry][key1])
 					{
+							if(result.entry_list[entry][key1][sens].hasOwnProperty('syn'))
+							{
+								outputsyn +=result.entry_list[entry][key1][sens].syn+"&nbsp;&nbsp;";
+							}
+														
+							if(result.entry_list[entry][key1][sens].hasOwnProperty('mc'))
+							{
+								outputmea +=result.entry_list[entry][key1][sens].mc+"&nbsp;&nbsp;   ||";
+							}
+							
+							if(result.entry_list[entry][key1][sens].hasOwnProperty('ant'))
+							{
+								outputant +=result.entry_list[entry][key1][sens].ant+"&nbsp;&nbsp;";
+							}
 						for(var key2 in result.entry_list[entry][key1][sens])
 						{
 							
@@ -74,6 +100,7 @@ $(document).click(function(e){
 				}
 			} 
 			document.getElementById("workingGround").innerHTML = outputsyn+"<br>" +outputmea +"<br>" +outputant; 
+			
 		}
 		function xmlToJson(xml) {
 
