@@ -1,7 +1,7 @@
+<!DOCTYPE html>
 <html>
-<title>
-</title>
 <head>
+    <title>Word Hatch</title>
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>  
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">  
 <style>
@@ -38,7 +38,6 @@ $(document).ready(function()
 			});
 			document.getElementById('popup').style.display='block';	
 		}		
-		}
 		if (e.target.id === 'popup') {
             $('#popup').hide();
         }
@@ -294,10 +293,10 @@ colors. In this season nature shows its real beauty and everywhere looks very da
   </header>
 
   <div class="w3-bar w3-border-bottom">
-   <button class="tablink w3-bar-item w3-button" onclick="openpopup(event, 'Meaning')">Meaning</button>
-   <button class="tablink w3-bar-item w3-button" onclick="openpopup(event, 'Antonym')">Antonym</button>
+   <button class="tablink w3-bar-item w3-button active" onclick="openpopup(event, 'Meaning')">Meaning</button>
+   <button class="tablink w3-bar-item w3-button fade" onclick="openpopup(event, 'Antonym')">Antonym</button>
   
-   <button class="tablink w3-bar-item w3-button" onclick="openpopup(event, 'Synonym')">Synonym</button>
+   <button class="tablink w3-bar-item w3-button fade" onclick="openpopup(event, 'Synonym')">Synonym</button>
    </div>
 
   <div id="Meaning" class="w3-container city" style="display:block">
