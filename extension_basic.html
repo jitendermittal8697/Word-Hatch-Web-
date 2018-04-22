@@ -39,7 +39,7 @@ $(document).ready(function()
 			document.getElementById('popup').style.display='block';	
 		}		
 		if (e.target.id === 'popup') {
-            $('#popup').hide();
+           selectmeaning();
         }
     });
 });
@@ -273,6 +273,21 @@ function openpopup(evt, cityName)
 	  document.getElementById(cityName).style.display = "block";
 	  evt.currentTarget.classList.add("w3-light-grey");
 }
+function selectmeaning()
+{
+	document.getElementById("Meaning").style.display = "block";
+	document.getElementById("Synonym").style.display = "none";
+	document.getElementById("Antonym").style.display = "none";
+	document.getElementById("popup").style.display = "none";
+	tablinks = document.getElementsByClassName("tablink");
+	x = document.getElementsByClassName("city");
+	  
+	for (i = 0; i < x.length; i++) 
+	{
+		tablinks[i].classList.remove("w3-light-grey");
+	}
+	document.getElementById("button").classList.add("w3-light-grey");
+}
 </script>
 </head>
 
@@ -287,16 +302,16 @@ colors. In this season nature shows its real beauty and everywhere looks very da
 <div id="popup" class="w3-modal" >
  <div class="w3-modal-content w3-card-4 w3-animate-zoom">
   <header class="w3-container w3-blue"> 
-   <span onclick="document.getElementById('popup').style.display='none'" 
+   <span onclick="selectmeaning()" 
    class="w3-button w3-blue w3-xlarge w3-display-topright">&times;</span>
    <h2 id="header"></h2>
   </header>
 
   <div class="w3-bar w3-border-bottom">
-   <button class="tablink w3-bar-item w3-button active" onclick="openpopup(event, 'Meaning')">Meaning</button>
-   <button class="tablink w3-bar-item w3-button fade" onclick="openpopup(event, 'Antonym')">Antonym</button>
+   <button class="tablink w3-bar-item w3-button" id="button" onclick="openpopup(event, 'Meaning')">Meaning</button>
+   <button class="tablink w3-bar-item w3-button" onclick="openpopup(event, 'Antonym')">Antonym</button>
   
-   <button class="tablink w3-bar-item w3-button fade" onclick="openpopup(event, 'Synonym')">Synonym</button>
+   <button class="tablink w3-bar-item w3-button" onclick="openpopup(event, 'Synonym')">Synonym</button>
    </div>
 
   <div id="Meaning" class="w3-container city" style="display:block">
@@ -316,7 +331,7 @@ colors. In this season nature shows its real beauty and everywhere looks very da
 
   <div class="w3-container w3-light-grey w3-padding">
    <button class="w3-button w3-right w3-white w3-border" 
-   onclick="document.getElementById('popup').style.display='none'">Close</button>
+   onclick="selectmeaning()">Close</button>
   </div>
  </div>
 </div>
