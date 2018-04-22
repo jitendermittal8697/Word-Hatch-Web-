@@ -1,0 +1,104 @@
+* {
+  margin: 0;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+#popUp {
+  position: fixed;
+  max-width: 350px;
+  height: 225px;
+  background: rgba(236, 240, 241, 1);
+  border: 7px solid #fff;
+  bottom: 0;
+  margin-left: 0;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+#new span {
+  background: #fff;
+  position: absolute;
+  color: #1c8dc4;
+  padding: 4px 10px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-top: -5px;
+}
+
+#popUp .close {
+  color: #464646;
+  right: 8px;
+  top: 0px;
+  position: absolute;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#popUp h2 {
+  font-size: 17px;
+  color: #464646;
+  line-height: 24px;
+  font-weight: 400;
+  text-align: center;
+  margin-top: 40px;
+  padding: 0 20px;
+}
+a.button {
+  margin: 0 auto;
+  text-align: center;
+  right: 0;
+  left: 0;
+  position: relative;
+  width: 120px;
+  font-size: 15px;
+  color: #fff;
+  border-bottom: 2px solid #18729f;
+  background: #1c8dc4;
+  border-radius: 4px;
+  padding: 8px 0;
+}
+
+#plus {
+  position: fixed;
+  color: #fff;
+  bottom: 15%;
+  font-size: 15px;
+  margin-left: -425px;
+  -webkit-transition: all 1.25s ease;
+  -moz-transition: all 1.25s ease;
+  -o-transition: all 1.25s ease;
+  transition: all 1.25s ease;
+  cursor: pointer;
+  text-align: left;
+  letter-spacing: 1px;
+}
+
+#plus span {
+  position: absolute;
+  margin-top: 38px;
+  left: 4px;
+}
+
+#plus::after {
+  content: '';
+  display: block;
+  display: relative;
+  border-top: 55px solid transparent;
+  border-bottom: 55px solid transparent;
+  border-left: 55px solid #1c8dc4;
+}
+
+@media all and (max-width: 900px) {
+  #popUp {
+    margin-left: 0px;
+  }
+  #plus {
+    margin-left: 0px;
+  }
+}
