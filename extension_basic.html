@@ -73,12 +73,12 @@ $(document).click(function(e){
 							{
 								if(typeof result.entry_list[entry][key1]['mc'].hasOwnProperty('#text'))
 								{
-									outputmea +=result.entry_list[entry][key1]['mc']['#text']+"&nbsp;&nbsp;";
+									outputmea +=result.entry_list[entry][key1]['mc']['#text']+"&nbsp;&nbsp;<br>";
 								}
 							}
 							else
 							{
-								outputmea +=result.entry_list[entry][key1].mc+"&nbsp;&nbsp;   ||<br>";
+								outputmea +=result.entry_list[entry][key1].mc+"&nbsp;&nbsp;<br>";
 							}
 						}
 						if(result.entry_list[entry][key1].hasOwnProperty('ant'))
@@ -120,12 +120,12 @@ $(document).click(function(e){
 								{
 									if(result.entry_list[entry][key1][sens]['mc'].hasOwnProperty('#text'))
 									{
-										outputmea +=result.entry_list[entry][key1][sens]['mc']['#text']+"&nbsp;&nbsp;";
+										outputmea +=result.entry_list[entry][key1][sens]['mc']['#text']+"&nbsp;&nbsp;<br>";
 									}
 								}
 								else
 								{
-									outputmea +=result.entry_list[entry][key1][sens].mc+"&nbsp;&nbsp;   ||<br>";
+									outputmea +=result.entry_list[entry][key1][sens].mc+"&nbsp;&nbsp;<br>";
 								}
 							}
 							if(result.entry_list[entry][key1][sens].hasOwnProperty('ant'))
@@ -167,12 +167,12 @@ $(document).click(function(e){
 									{
 										if(typeof result.entry_list[entry][key1][sens][key2]['mc'].hasOwnProperty('#text'))
 										{
-											outputmea +=result.entry_list[entry][key1][sens][key2]['mc']['#text']+"&nbsp;&nbsp;";
+											outputmea +=result.entry_list[entry][key1][sens][key2]['mc']['#text']+"&nbsp;&nbsp;<br>";
 										}
 									}
 									else
 									{
-										outputmea +=result.entry_list[entry][key1][sens][key2].mc+"&nbsp;&nbsp;   ||<br>";
+										outputmea +=result.entry_list[entry][key1][sens][key2].mc+"&nbsp;&nbsp;<br>";
 									}
 								}
 								if(result.entry_list[entry][key1][sens][key2].hasOwnProperty('ant')&&typeof result.entry_list[entry][key1][sens][key2]['ant']!=="object")
