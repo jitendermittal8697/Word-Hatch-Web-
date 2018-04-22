@@ -28,18 +28,19 @@ $(document).ready(function()
 			var sel = selection.toString();
 			var str = sel.trim();
 			var abc = str.replace(/[^a-zA-Z ]/g, "");
+			document.getElementById('header').innerHTML=abc;
 			var selection = window.getSelection ? window.getSelection() : document.selection ? document.selection : null;
 			if(!!selection) selection.empty ? selection.empty() : selection.removeAllRanges();
 			var src = "https://www.dictionaryapi.com/api/v1/references/thesaurus/xml/"+abc+"?key=91859f8f-807f-47e1-b41d-593375234bd2"; // NOTE: replace test_only with your own KEY 
 			jQuery.get( src, function( response ) { 
 			var obj = xmlToJson(response);
-			console.log(obj);
 			process(obj);	
 			});
 			document.getElementById('popup').style.display='block';	
 		}
-
-		
+		if (e.target.id === 'popup') {
+            $('#popup').hide();
+        }
     });
 });
 function process(result) 
@@ -288,7 +289,7 @@ colors. In this season nature shows its real beauty and everywhere looks very da
   <header class="w3-container w3-blue"> 
    <span onclick="document.getElementById('popup').style.display='none'" 
    class="w3-button w3-blue w3-xlarge w3-display-topright">&times;</span>
-   <h2>Made By : Jitender,Sushant,Jaspreet and Vidhi !!</h2>
+   <h2 id="header"></h2>
   </header>
 
   <div class="w3-bar w3-border-bottom">
@@ -298,7 +299,7 @@ colors. In this season nature shows its real beauty and everywhere looks very da
    <button class="tablink w3-bar-item w3-button" onclick="openpopup(event, 'Synonym')">Synonym</button>
    </div>
 
-  <div id="Meaning" class="w3-container city">
+  <div id="Meaning" class="w3-container city" style="display:block">
    <h1>Meaning</h1>
    <p id="meancontent"></p>
   </div>
