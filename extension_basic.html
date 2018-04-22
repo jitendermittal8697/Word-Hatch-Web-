@@ -2,24 +2,19 @@
 <title>
 </title>
 <head>
-</head>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>  
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">  
+<style>
+.city {display:none}
 
-<body>
-<p>
-Holi is a most entertaining festival of India. It is also known as festival of colors as we play with colors at this festival. 
-It is a Hindu festival celebrated with lots of joy by the Hindu people all over India as well as abroad where Hindu population
-  is found. It falls in the spring season (in Chaitra month) after the winter season. It is one of the happiest religious 
-festivals of the Hindus. It is also celebrated by some non-Hindus to enjoy this festival as a spring festival of love and 
-colors. In this season nature shows its real beauty and everywhere looks very dazzling with pleasant environment.
-</p>
-<p id="workingGround"></p>
+</style>
 
-<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-    
 <script>
 
-$(document).click(function(e){
-         s = window.getSelection();
+$(document).click(function(e)
+{
+	
+    s = window.getSelection();
     var range = s.getRangeAt(0);
     var node = s.anchorNode;
     while (range.toString().indexOf(' ') != 0) {
@@ -36,17 +31,16 @@ $(document).click(function(e){
 		jQuery.get( src, function( response ) { 
 		var obj = xmlToJson(response);
 		console.log(obj);
-		process(obj);
-		
-} );
+		process(obj);	
+		});
 
-			
+		document.getElementById('popup').style.display='block';	
        });
 	   function process(result) 
 	   { 
-			outputsyn = "<b>Synonyms : </b>"; 
-			outputant = "<b>Antonyms : </b>"; 
-			outputmea = "<b>Meaning : </b>"; 
+			outputsyn = ""; 
+			outputant = ""; 
+			outputmea = ""; 
 			for(var entry in result.entry_list)
 			{
 				for(var key1 in result.entry_list[entry])
@@ -194,7 +188,10 @@ $(document).click(function(e){
 					}
 				}
 			} 
-			document.getElementById("workingGround").innerHTML = outputsyn+"<br>" +outputmea +"<br>" +outputant; 
+			document.getElementById("synocontent").innerHTML = outputsyn; 
+			document.getElementById("antocontent").innerHTML = outputant; 
+			document.getElementById("meancontent").innerHTML = outputmea; 
+			
 		}
 		function xmlToJson(xml) {
 
@@ -238,5 +235,66 @@ $(document).click(function(e){
 		return obj;
 	}
 </script>
+<script>
+
+function openpopup(evt, cityName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("city");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].classList.remove("w3-light-grey");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.classList.add("w3-light-grey");
+}
+</script>
+</head>
+
+<body>
+<p>
+Holi is a most entertaining festival of India. It is also known as festival of colors as we play with colors at this festival.
+It is a Hindu festival celebrated with lots of joy by the Hindu people all over India as well as abroad where Hindu population
+  is found. It falls in the spring season (in Chaitra month) after the winter season. It is one of the happiest religious 
+festivals of the Hindus. It is also celebrated by some non-Hindus to enjoy this festival as a spring festival of love and 
+colors. In this season nature shows its real beauty and everywhere looks very dazzling with pleasant environment.
+</p>
+<div id="popup" class="w3-modal" >
+ <div class="w3-modal-content w3-card-4 w3-animate-zoom">
+  <header class="w3-container w3-blue"> 
+   <span onclick="document.getElementById('popup').style.display='none'" 
+   class="w3-button w3-blue w3-xlarge w3-display-topright">&times;</span>
+   <h2>Header</h2>
+  </header>
+
+  <div class="w3-bar w3-border-bottom">
+   <button class="tablink w3-bar-item w3-button" onclick="openpopup(event, 'Meaning')">Meaning</button>
+   <button class="tablink w3-bar-item w3-button" onclick="openpopup(event, 'Synonym')">Synonym</button>
+   <button class="tablink w3-bar-item w3-button" onclick="openpopup(event, 'Antonyms')">Antonym</button>
+  </div>
+
+  <div id="Meaning" class="w3-container city">
+   <h1>Meaning</h1>
+   <p id="meancontent"></p>
+  </div>
+
+  <div id="Synonym" class="w3-container city">
+   <h1>Synonym</h1>
+   <p id="synocontent"></p>
+  </div>
+
+  <div id="Antonym" class="w3-container city">
+   <h1>Antonym</h1>
+   <p id="antocontent"></p>
+  </div>
+
+  <div class="w3-container w3-light-grey w3-padding">
+   <button class="w3-button w3-right w3-white w3-border" 
+   onclick="document.getElementById('popup').style.display='none'">Close</button>
+  </div>
+ </div>
+</div>
 </body>
 </html>
