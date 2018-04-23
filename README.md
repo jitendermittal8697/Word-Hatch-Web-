@@ -1,2 +1,2 @@
 # ChromeExtension
-Extension to build good vocabulary
+Extension that can work as a dictionary alternate.
