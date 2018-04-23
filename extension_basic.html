@@ -3,12 +3,7 @@
 <head>
     <title>Word Hatch</title>
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>  
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">  
-<style>
-.city {display:none}
-
-</style>
-
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script>
 $(document).ready(function()
 {
@@ -254,9 +249,6 @@ function xmlToJson(xml)
 	}
 	return obj;
 }
-</script>
-<script>
-
 function openpopup(evt, cityName) 
 {
 	  var i, x, tablinks;
@@ -290,7 +282,6 @@ function selectmeaning()
 }
 </script>
 </head>
-
 <body>
 <p>
 Holi is a most entertaining festival of India. It is also known as festival of colors as we play with colors at this festival.
@@ -306,29 +297,23 @@ colors. In this season nature shows its real beauty and everywhere looks very da
    class="w3-button w3-blue w3-xlarge w3-display-topright">&times;</span>
    <h2 id="header"></h2>
   </header>
-
   <div class="w3-bar w3-border-bottom">
    <button class="tablink w3-bar-item w3-button" id="button" onclick="openpopup(event, 'Meaning')">Meaning</button>
    <button class="tablink w3-bar-item w3-button" onclick="openpopup(event, 'Antonym')">Antonym</button>
-  
    <button class="tablink w3-bar-item w3-button" onclick="openpopup(event, 'Synonym')">Synonym</button>
    </div>
-
   <div id="Meaning" class="w3-container city" style="display:block">
    <h1>Meaning</h1>
    <p id="meancontent"></p>
   </div>
-
-  <div id="Synonym" class="w3-container city">
+  <div id="Synonym" class="w3-container city" style="display:none">
    <h1>Synonym</h1>
    <p id="synocontent"></p>
   </div>
-
-  <div id="Antonym" class="w3-container city">
+  <div id="Antonym" class="w3-container city" style="display:none">
    <h1>Antonym</h1>
    <p id="antocontent"></p>
   </div>
-
   <div class="w3-container w3-light-grey w3-padding">
    <button class="w3-button w3-right w3-white w3-border" 
    onclick="selectmeaning()">Close</button>
